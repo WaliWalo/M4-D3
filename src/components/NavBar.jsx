@@ -9,6 +9,7 @@ import horror from "../data/horror.json";
 import romance from "../data/romance.json";
 import scifi from "../data/scifi.json";
 import BookList from "./BookList.jsx";
+import JumbotronComponent from './JumbotronComponent';
 
 let bookCategories = ["fantasy", "horror", "history", "romance", "scifi"];
 let books = {
@@ -53,8 +54,8 @@ class NavBar extends Component {
           sticky="top"
           collapseOnSelect
           expand="lg"
-          bg="dark"
-          variant="dark"
+          bg="light"
+          variant="light"
         >
           <Navbar.Brand href="#home">Book Store</Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
@@ -90,6 +91,8 @@ class NavBar extends Component {
             </Nav>
           </Navbar.Collapse>
         </Navbar>
+        <JumbotronComponent />
+        <br />
         <BookList books={this.state.books} />
       </>
     );
