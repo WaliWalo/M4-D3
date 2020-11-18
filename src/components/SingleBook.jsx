@@ -1,56 +1,46 @@
 import React from "react";
+import "./SingleBook.css";
 import { Card, Button } from "react-bootstrap";
 
-import MyBadge from './MyBadge.jsx';
+import MyBadge from "./MyBadge.jsx";
 
-class SingleBook extends React.Component{
-
+class SingleBook extends React.Component {
   state = {
-    selected: false
-  }
-  
-  render(){
+    selected: false,
+    cardStyle: { color: "black" },
+  };
 
+  render() {
     let variant;
-    if(this.props.book.category === 'fantasy')
-      variant = 'info';
-    else if(this.props.book.category === 'history')
-      variant = 'warning'
-    else if(this.props.book.category === 'horror')
-      variant = 'dark'
-    else variant = 'light'
-
-
-    let cardStyle={boxShadow: '2px 4px solid #444',
-        color: 'red'}; 
+    if (this.props.book.category === "fantasy") variant = "info";
+    else if (this.props.book.category === "history") variant = "warning";
+    else if (this.props.book.category === "horror") variant = "dark";
+    else variant = "light";
 
     let handleClick = () => {
-      let isSelected = this.state.selected;
-      this.setState({selected: !isSelected});
-      console.log('clicked');
+      console.log("clicked");
 
-
-      // if(this.state.selected){
-      //   cardStyle = {
-      //     boxShadow: '2px 4px solid #444',
-      //     color: 'red'
-      //   }
-      // }
-      // else {
-      //   cardStyle = {}
-      // }
-    }
-
-
+      if (this.state.selected === true) {
+        this.setState({ cardStyle: { color: "black" } });
+        this.setState({ selected: false });
+      } else {
+        this.setState({ cardStyle: { color: "red" } });
+        this.setState({ selected: true });
+      }
+    };
 
     return (
-      <Card style={{ width: "18rem" }} onClick={handleClick} className={cardStyle} >
+      <Card
+        style={this.state.cardStyle}
+        onClick={handleClick}
+        key={this.props.book.id}
+      >
         <Card.Img variant="top" src={this.props.book.img} />
         <Card.Body>
           <Card.Title>{this.props.book.title}</Card.Title>
           <Card.Text>{this.props.book.price}</Card.Text>
           <Button variant="primary">Go somewhere</Button>
-          <MyBadge color={variant} category={this.props.book.category}/>
+          <MyBadge color={variant} category={this.props.book.category} />
         </Card.Body>
       </Card>
     );
