@@ -1,4 +1,7 @@
 import React, { Component } from "react";
+import "./NavBar.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { Navbar, Nav, Form, FormControl, NavDropdown } from "react-bootstrap";
 import fantasy from "../data/fantasy.json";
 import history from "../data/history.json";
@@ -69,22 +72,22 @@ class NavBar extends Component {
                       href="#/action-1"
                       key={`dropdown-category-${index}`}
                       onClick={() => this.handleDropdownChange(category)}
-                      style={{ texttransform: "capitalize" }}
                     >
                       {category}
                     </NavDropdown.Item>
                   );
                 })}
               </NavDropdown>
+              <Form inline>
+                <FormControl
+                  id="searchInp"
+                  type="text"
+                  placeholder={<FontAwesomeIcon icon={faSearch} />}
+                  className="mr-sm-2"
+                  onChange={(e) => this.handleSearch(e.target.value)}
+                />
+              </Form>
             </Nav>
-            <Form inline>
-              <FormControl
-                type="text"
-                placeholder="Search"
-                className="mr-sm-2"
-                onChange={(e) => this.handleSearch(e.target.value)}
-              />
-            </Form>
           </Navbar.Collapse>
         </Navbar>
         <BookList books={this.state.books} />
