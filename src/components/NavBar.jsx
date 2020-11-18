@@ -1,5 +1,7 @@
 import React, { Component } from "react";
-import { Navbar, Nav, Form, FormControl, Button } from "react-bootstrap";
+import { Navbar, Nav, Form, FormControl } from "react-bootstrap";
+import books from "../data/fantasy.json";
+import BookList from "./BookList.jsx";
 class NavBar extends Component {
   render() {
     return (
@@ -24,10 +26,10 @@ class NavBar extends Component {
                 placeholder="Search"
                 className="mr-sm-2"
               />
-              <Button variant="outline-success">Search</Button>
             </Form>
           </Navbar.Collapse>
         </Navbar>
+        <BookList books={books} />
       </>
     );
   }
