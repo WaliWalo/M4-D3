@@ -3,6 +3,25 @@ import { Navbar, Nav, Form, FormControl } from "react-bootstrap";
 import books from "../data/fantasy.json";
 import BookList from "./BookList.jsx";
 class NavBar extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      books,
+    };
+  }
+
+  handleSearch = (query) => {
+    if (query) {
+      let filtered = books.filter((book) => {
+        return book.title.toLowerCase().includes(query.toLowerCase());
+      });
+      this.setState({ books: filtered });
+    } else {
+      this.setState({ books: books });
+    }
+  };
+
   render() {
     return (
       <>
@@ -25,11 +44,12 @@ class NavBar extends Component {
                 type="text"
                 placeholder="Search"
                 className="mr-sm-2"
+                onChange={(e) => this.handleSearch(e.target.value)}
               />
             </Form>
           </Navbar.Collapse>
         </Navbar>
-        <BookList books={books} />
+        <BookList books={this.state.books} />
       </>
     );
   }
