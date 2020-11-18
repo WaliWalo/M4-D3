@@ -35,8 +35,12 @@ class SingleBook extends React.Component {
         onClick={handleClick}
         key={this.props.book.id}
       >
-        <Card.Img variant="top" src={this.props.book.img} />
-        <Card.Body>
+        <Card.Img
+          variant="top"
+          src={this.props.book.img}
+          style={{ height: "20rem" }}
+        />
+        <Card.Body style={{ height: "12rem" }}>
           <Card.Title>{this.props.book.title}</Card.Title>
           <Card.Text>{this.props.book.price}</Card.Text>
           <Button variant="primary">Go somewhere</Button>
