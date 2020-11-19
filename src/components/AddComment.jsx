@@ -1,6 +1,5 @@
 import React from "react";
 import { Form, Modal, FormLabel, FormGroup, Button } from "react-bootstrap";
-import Comment from "./Comment";
 class AddComment extends React.Component {
   state = {
     comment: {
@@ -36,6 +35,7 @@ class AddComment extends React.Component {
       );
       if (response.ok) {
         alert("Comment saved!");
+        this.props.listFunc();
         this.setState({
           comment: {
             comment: "",

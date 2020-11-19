@@ -34,6 +34,7 @@ class SingleBook extends React.Component {
       <>
         <MyModal
           bookid={this.props.book.asin}
+          bookimg={this.props.book.img}
           show={this.state.modalShow}
           onHide={() => this.setState({ modalShow: false })}
         />

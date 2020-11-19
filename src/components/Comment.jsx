@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Button, ListGroup, FormControl } from "react-bootstrap";
+import AddComment from "./AddComment";
 export default class Comment extends Component {
   state = {
     comments: [],
@@ -57,28 +58,34 @@ export default class Comment extends Component {
   };
   render() {
     return (
-      <div className="mb-5">
-        <FormControl
-          type="text"
-          placeholder="Search"
-          className="mr-sm-2"
-          onChange={(e) => this.handleSearch(e.target.value)}
+      <>
+        <div className="mb-5">
+          <FormControl
+            type="text"
+            placeholder="Search"
+            className="mr-sm-2"
+            onChange={(e) => this.handleSearch(e.target.value)}
+          />
+          {this.state.comments.map((comment, index) => (
+            <ListGroup key={index}>
+              <ListGroup.Item>
+                <p>Comment: {comment.comment}</p> <p>Rating: {comment.rate}</p>
+                <Button
+                  onClick={() => {
+                    this.removeComment(comment._id);
+                  }}
+                >
+                  Remove Comment
+                </Button>
+              </ListGroup.Item>
+            </ListGroup>
+          ))}
+        </div>
+        <AddComment
+          bookid={this.props.bookid}
+          listFunc={this.componentDidMount}
         />
-        {this.state.comments.map((comment, index) => (
-          <ListGroup key={index}>
-            <ListGroup.Item>
-              <p>Comment: {comment.comment}</p> <p>Rating: {comment.rate}</p>
-              <Button
-                onClick={() => {
-                  this.removeComment(comment._id);
-                }}
-              >
-                Remove Comment
-              </Button>
-            </ListGroup.Item>
-          </ListGroup>
-        ))}
-      </div>
+      </>
     );
   }
 }
