@@ -1,13 +1,16 @@
 import React from "react";
 import "./SingleBook.css";
 import { Card, Button } from "react-bootstrap";
+import MyModal from "./MyModal.jsx";
 
 import MyBadge from "./MyBadge.jsx";
 
 class SingleBook extends React.Component {
+  // const [modalShow, setModalShow] = React.useState(false);
   state = {
     selected: false,
     cardStyle: { color: "black" },
+    modalShow: false,
   };
 
   render() {
@@ -18,8 +21,6 @@ class SingleBook extends React.Component {
     else variant = "light";
 
     let handleClick = () => {
-      console.log("clicked");
-
       if (this.state.selected === true) {
         this.setState({ cardStyle: { color: "black" } });
         this.setState({ selected: false });
@@ -30,23 +31,35 @@ class SingleBook extends React.Component {
     };
 
     return (
-      <Card
-        style={this.state.cardStyle}
-        onClick={handleClick}
-        key={this.props.book.id}
-      >
-        <Card.Img
-          variant="top"
-          src={this.props.book.img}
-          style={{ height: "20rem" }}
+      <>
+        <MyModal
+          bookid={this.props.book.asin}
+          show={this.state.modalShow}
+          onHide={() => this.setState({ modalShow: false })}
         />
-        <Card.Body style={{ height: "12rem" }}>
-          <Card.Title>{this.props.book.title}</Card.Title>
-          <Card.Text>{this.props.book.price}</Card.Text>
-          <Button variant="primary">Go somewhere</Button>
-          <MyBadge color={variant} category={this.props.book.category} />
-        </Card.Body>
-      </Card>
+        <Card
+          style={this.state.cardStyle}
+          onClick={handleClick}
+          key={this.props.book.id}
+        >
+          <Card.Img
+            variant="top"
+            src={this.props.book.img}
+            style={{ height: "20rem" }}
+          />
+          <Card.Body style={{ height: "12rem" }}>
+            <Card.Title>{this.props.book.title}</Card.Title>
+            <Card.Text>{this.props.book.price}</Card.Text>
+            <Button
+              variant="primary"
+              onClick={() => this.setState({ modalShow: true })}
+            >
+              Go somewhere
+            </Button>
+            <MyBadge color={variant} category={this.props.book.category} />
+          </Card.Body>
+        </Card>
+      </>
     );
   }
 }

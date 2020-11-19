@@ -6,9 +6,9 @@ export default function BookList(props) {
   return (
     <Container>
       <Row>
-        {props.books.map((book) => {
+        {props.books.map((book, index) => {
           return (
-            <Col>
+            <Col key={index}>
               <SingleBook book={book} />
             </Col>
           );
