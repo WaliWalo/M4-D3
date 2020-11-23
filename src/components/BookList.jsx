@@ -30,18 +30,31 @@ export default class BookList extends Component {
                 );
               })}
             </Col>
-            <Col
-              style={{
-                // position: "-webkit-sticky",
-                position: "sticky",
-                top: "0",
-              }}
-            >
-              {this.state.selected ? (
-                <ShowComment book={this.state.selectedBook}></ShowComment>
-              ) : (
-                "Pick a book to show comment"
-              )}
+            <Col>
+              <div
+                style={{
+                  position: "absolute",
+                  top: "0",
+                  left: "0",
+                  width: "100%",
+                  height: "100%",
+                }}
+              >
+                <div
+                  style={{
+                    position: "-webkit-sticky",
+                    position: "sticky",
+                    top: "0",
+                    padding: "50px 15px",
+                  }}
+                >
+                  {this.state.selected ? (
+                    <ShowComment book={this.state.selectedBook}></ShowComment>
+                  ) : (
+                    "Pick a book to show comment"
+                  )}
+                </div>
+              </div>
             </Col>
           </Row>
         </Container>

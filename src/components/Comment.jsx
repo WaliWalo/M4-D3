@@ -59,7 +59,7 @@ export default class Comment extends Component {
   render() {
     return (
       <>
-        <div className="mb-5">
+        <div className="mb-0">
           <FormControl
             type="text"
             placeholder="Search"
