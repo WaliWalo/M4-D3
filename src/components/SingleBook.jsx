@@ -2,7 +2,6 @@ import React from "react";
 import "./SingleBook.css";
 import { Card, Button, Row, Col } from "react-bootstrap";
 import MyModal from "./MyModal.jsx";
-import ShowComment from "./ShowComment";
 
 import MyBadge from "./MyBadge.jsx";
 

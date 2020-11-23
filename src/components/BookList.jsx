@@ -45,7 +45,7 @@ export default class BookList extends Component {
                     position: "-webkit-sticky",
                     position: "sticky",
                     top: "0",
-                    padding: "50px 15px",
+                    padding: "0px 15px",
                   }}
                 >
                   {this.state.selected ? (

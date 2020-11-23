@@ -97,37 +97,36 @@ export default class ShowComment extends Component {
     return (
       <>
         <h1>{this.state.loading ? "Loading..." : this.props.book.title}</h1>
-        {this.state.comments.length !== 0 && (
-          <div>
-            <div className="mb-5">
-              <FormControl
-                type="text"
-                placeholder="Search"
-                className="mr-sm-2"
-                onChange={(e) => this.handleSearch(e.target.value)}
-              />
-              {this.state.comments.map((comment, index) => (
-                <ListGroup key={index}>
-                  <ListGroup.Item>
-                    <p>Comment: {comment.comment}</p>{" "}
-                    <p>Rating: {comment.rate}</p>
-                    <Button
-                      onClick={() => {
-                        this.removeComment(comment._id);
-                      }}
-                    >
-                      Remove Comment
-                    </Button>
-                  </ListGroup.Item>
-                </ListGroup>
-              ))}
-            </div>
-            <AddComment
-              bookid={this.props.book.asin}
-              modify={this.handleUpdate}
+
+        <div>
+          <div className="">
+            <FormControl
+              type="text"
+              placeholder="Search"
+              className="mr-sm-2"
+              onChange={(e) => this.handleSearch(e.target.value)}
             />
+            {this.state.comments.map((comment, index) => (
+              <ListGroup key={index}>
+                <ListGroup.Item>
+                  <p>Comment: {comment.comment}</p>{" "}
+                  <p>Rating: {comment.rate}</p>
+                  <Button
+                    onClick={() => {
+                      this.removeComment(comment._id);
+                    }}
+                  >
+                    Remove Comment
+                  </Button>
+                </ListGroup.Item>
+              </ListGroup>
+            ))}
           </div>
-        )}
+          <AddComment
+            bookid={this.props.book.asin}
+            modify={this.handleUpdate}
+          />
+        </div>
       </>
     );
   }
