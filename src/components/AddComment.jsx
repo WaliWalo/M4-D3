@@ -18,8 +18,9 @@ class AddComment extends React.Component {
     this.setState({ comment: comment });
   };
 
-  handleSubmit = async (e) => {
+  handleSubmit = async (e, call) => {
     e.preventDefault();
+    call = this.props.modify;
     try {
       let response = await fetch(
         `https://striveschool-api.herokuapp.com/api/comments/`,
@@ -35,7 +36,7 @@ class AddComment extends React.Component {
       );
       if (response.ok) {
         alert("Comment saved!");
-        this.props.listFunc();
+        call(); //changes the state of the comment component
         this.setState({
           comment: {
             comment: "",

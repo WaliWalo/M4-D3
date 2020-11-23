@@ -2,14 +2,22 @@ import React, { Component } from "react";
 import "./NavBar.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
-import { Navbar, Nav, Form, FormControl, NavDropdown } from "react-bootstrap";
+import {
+  Navbar,
+  Nav,
+  Form,
+  FormControl,
+  NavDropdown,
+  Col,
+  Row,
+} from "react-bootstrap";
 import fantasy from "../data/fantasy.json";
 import history from "../data/history.json";
 import horror from "../data/horror.json";
 import romance from "../data/romance.json";
 import scifi from "../data/scifi.json";
 import BookList from "./BookList.jsx";
-import JumbotronComponent from './JumbotronComponent';
+import JumbotronComponent from "./JumbotronComponent";
 
 let bookCategories = ["fantasy", "horror", "history", "romance", "scifi"];
 let books = {
@@ -93,7 +101,11 @@ class NavBar extends Component {
         </Navbar>
         <JumbotronComponent />
         <br />
-        <BookList books={this.state.books} />
+        <Row>
+          <Col>
+            <BookList books={this.state.books} />
+          </Col>
+        </Row>
       </>
     );
   }
